@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react"
 import type { ChangeEvent } from "react"
-
+import Image from "next/image"
 // A detailed type for the OpenWeatherMap API response
 type CityInfo = {
   list: Array<{
@@ -120,7 +120,7 @@ const Home = () => {
                   <strong>Condition:</strong> <span>{row.list[0].weather[0].description}</span>
                 </p>
                 <p>
-                  <img src={`https://openweathermap.org/img/wn/${row.list[0].weather[0].icon}@2x.png`} alt={row.list[0].weather[0].description} />
+                  <Image src={`https://openweathermap.org/img/wn/${row.list[0].weather[0].icon}@2x.png`} width={80} height={80} alt={row.list[0].weather[0].description} />
                 </p>
                 <input type="button" className="del-btn" value="X" onClick={()=>handleDel(row.city.id)}/>
               </div>   
