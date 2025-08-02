@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from "react"
-import type { ChangeEvent } from "react"
 import Image from "next/image"
 // A detailed type for the OpenWeatherMap API response
 type CityInfo = {
@@ -39,7 +38,7 @@ const Home = () => {
   const [weatherData, setWeatherData] = useState<CityInfo[]>([]);
   const [error, setError] = useState("");
 
-  const handleCity = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCity = (e:React.ChangeEvent<HTMLInputElement>) => {
     setCity(e.currentTarget.value.trim());
   }
 
@@ -77,9 +76,11 @@ const Home = () => {
       // Clear the input field *after* a successful fetch.
       setCity("");
       
-    } catch (err: any) {
-      console.error(err);
-      setError(`Error fetching data. Please try again or check the city name.`);
+    } catch (err:unknown) {
+      if(err instanceof Error){
+        setError(`Error fetching data. Please try again or check the city name.`);
+      }
+      
     }
   }
 
